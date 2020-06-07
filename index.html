@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-title" content="抽奖" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v0/images/apple-touch-icon.png" />
+<link rel="icon" sizes="192x192" href="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v0/images/android-chrome-192x192.png" />
+<link rel="shortcut icon" href="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v0/images/favicon.ico" />
+<title>抽奖</title>
+<style>
+body{
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+}
+.wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.box{
+  width: 60vw;
+  height: 60vh;
+  margin: 12px auto;
+  background-color: #fff;
+  border-radius: 12px;
+}
+.op{
+  background-color: rgba(54, 219, 219);
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 48px;
+  width: 60vw;
+  margin: 12px auto;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div id="box" class="box"></div>
+  <div id="draw" class="op">抽奖</div>
+</div>
+<script src="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v11/js/zepto.min.js"></script>
+<script>
+$(function() {
+  var prizeList = [{
+    name: '巧克力',
+    image: '',
+    rate: 0.2
+  }];
+});
+</script>
+</body>
+</html>
