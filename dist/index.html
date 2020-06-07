@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no" />
+<meta name="apple-mobile-web-app-title" content="抽奖" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<link rel="apple-touch-icon" href="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v0/images/apple-touch-icon.png" />
+<link rel="icon" sizes="192x192" href="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v0/images/android-chrome-192x192.png" />
+<link rel="shortcut icon" href="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v0/images/favicon.ico" />
+<title>抽奖</title>
+<style>
+body{
+  padding: 0;
+  margin: 0;
+  background-color: #333;
+}
+.wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.box{
+  width: 60vw;
+  height: 60vh;
+  margin: 12px auto;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.op{
+  background-color: rgba(54, 219, 219);
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 48px;
+  width: 60vw;
+  margin: 12px auto;
+}
+.box .img{
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <div id="box" class="box"></div>
+  <div id="draw" class="op">抽奖</div>
+</div>
+<script src="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v11/js/zepto.min.js"></script>
+<script>
+$(function() {
+  var prizeList = [{
+    name: '巧克力',
+    image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2894112908,1236594902&fm=26&gp=0.jpg',
+    rate: 0.4
+  }, {
+    name: '看电视',
+    image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591524041615&di=a00a3eb4765a5963a1b5081fe3cc03af&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F03%2F17%2F962c8ac2da61395ace6a3f9e085814dd.jpg%2521%2Ffwfh%2F804x1423%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue',
+    rate: 0.3
+  }, {
+    name: '棒棒糖',
+    image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591523661025&di=ad5bb076d9f8b50b5b6d86b4584a40c1&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Dac70ce4b682762d0803ea4b790ed0849%2F6e5949166d224f4a2538027b02f790529922d153.jpg',
+    rate: 0.1
+  }, {
+    name: '冰激凌',
+    image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591524077383&di=2dd90f1f378db83e4ce92ffa30ee8e84&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F16%2F11%2F14%2F32125752319543128124c603f6f4b129.jpg',
+    rate: 0.01
+  }];
+
+  var itemList = prizeList.slice(0);
+  itemList.push({
+    name: '很遗憾',
+    image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3563113040,963279351&fm=26&gp=0.jpg',
+  })
+
+  itemList.forEach(function(item) {
+    var url = item.image;
+    var img = new Image();
+    img.src = url;
+    item.node = $('<div class="img" style="background-image: url(' + url + ');"></div>');
+    item.node.css('display', 'none');
+    $('#box').append(item.node);
+  });
+
+  // 挑选奖品
+  // 概率计算在这里
+  var pickPrize = function() {
+
+  };
+
+  var timer = null;
+  var curIndex = -1;
+
+  // 抽奖动画
+  var doFx = function() {
+    var index;
+    do {
+      index = Math.floor(itemList.length * Math.random());
+    } while (index === curIndex);
+    var prevItem = itemList[curIndex];
+    var curItem = itemList[index];
+    curIndex = index;
+    if (curItem) {
+      curItem.node.show();
+    }
+    if (prevItem) {
+      prevItem.node.hide();
+    }
+    timer = setTimeout(doFx, 100);
+  }
+
+  // 抽奖动作切换
+  var cooling = false
+  $('#draw').on('click', function(){
+    // 防止误触发
+    if (cooling) {
+      return;
+    }
+    cooling = true;
+    setTimeout(function() {
+      cooling = false;
+    }, 1000);
+
+    if (timer) {
+      // 给出结果
+      clearTimeout(timer);
+      timer = null;
+      var curItem = itemList[curIndex];
+      if (curItem) {
+        curItem.node.hide();
+      }
+      pickPrize();
+    } else {
+      // 开始动画
+      doFx();
+    }
+  });
+});
+</script>
+</body>
+</html>
