@@ -71,18 +71,19 @@ $(function() {
   }, {
     name: '棒棒糖',
     image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591523661025&di=ad5bb076d9f8b50b5b6d86b4584a40c1&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Dac70ce4b682762d0803ea4b790ed0849%2F6e5949166d224f4a2538027b02f790529922d153.jpg',
-    rate: 0.1
+    rate: 0.2
   }, {
     name: '冰激凌',
     image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591524077383&di=2dd90f1f378db83e4ce92ffa30ee8e84&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F16%2F11%2F14%2F32125752319543128124c603f6f4b129.jpg',
-    rate: 0.01
+    rate: 0.2
   }];
 
   var itemList = prizeList.slice(0);
-  itemList.push({
+  var emptyItem = {
     name: '很遗憾',
     image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3563113040,963279351&fm=26&gp=0.jpg',
-  })
+  };
+  itemList.push(emptyItem);
 
   itemList.forEach(function(item) {
     var url = item.image;
@@ -96,7 +97,22 @@ $(function() {
   // 挑选奖品
   // 概率计算在这里
   var pickPrize = function() {
-
+    var seed = Math.random();
+    console.log('seed:', seed);
+    var chosenList = prizeList.filter(function(item) {
+      return item.rate > seed;
+    });
+    if (chosenList.length > 0) {
+      // 概率在范围内的，随机选择一个
+      var cindex = Math.floor(Math.random() * chosenList.length);
+      var citem = chosenList[cindex];
+      if (citem) {
+        citem.node.show();
+      }
+    } else {
+      // 未中奖
+      emptyItem.node.show();
+    }
   };
 
   var timer = null;
@@ -105,6 +121,7 @@ $(function() {
   // 抽奖动画
   var doFx = function() {
     var index;
+    // 要求每次切换帧不能重复
     do {
       index = Math.floor(itemList.length * Math.random());
     } while (index === curIndex);
@@ -136,12 +153,19 @@ $(function() {
       // 给出结果
       clearTimeout(timer);
       timer = null;
+      // 隐藏动画当前帧
       var curItem = itemList[curIndex];
       if (curItem) {
         curItem.node.hide();
+        curIndex = -1;
       }
+      // 挑选奖品
       pickPrize();
     } else {
+      // 先全部隐藏
+      itemList.forEach(function(item) {
+        item.node.hide();
+      });
       // 开始动画
       doFx();
     }
