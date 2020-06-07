@@ -50,6 +50,12 @@ body{
   background-position: center;
   background-size: contain;
 }
+.box .title{
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -87,9 +93,10 @@ $(function() {
 
   itemList.forEach(function(item) {
     var url = item.image;
+    var name = item.name;
     var img = new Image();
     img.src = url;
-    item.node = $('<div class="img" style="background-image: url(' + url + ');"></div>');
+    item.node = $('<div class="img" style="background-image: url(' + url + ');"><div class="title">' + name + '</div></div>');
     item.node.css('display', 'none');
     $('#box').append(item.node);
   });
