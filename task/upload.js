@@ -17,6 +17,11 @@ const getQcloudConf = (options) => {
       conf = {}
     }
   }
+  Object.assign(conf, {
+    AppId: '1256085844',
+    Bucket: 'ria-1256085844',
+    Region: 'ap-chengdu'
+  })
   if (!conf.SecretKey) {
     throw new Error('Require SecretKey!')
   }
