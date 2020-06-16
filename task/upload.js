@@ -68,7 +68,7 @@ $gulp.task(
     )
     .pipe(
       $qcloudUpload(getQcloudConf({
-        overwrite: true
+        overwrite: false
       }))
     )
 )
