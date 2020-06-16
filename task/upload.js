@@ -26,9 +26,6 @@ const getQcloudConf = (options) => {
   return conf
 }
 
-// 在开发网执行腾讯云上传可能需要启动 proxifier：
-// windows: http://km.oa.com/articles/show/340701?kmref=search&from_page=1&no=1
-// macs: http://km.oa.com/articles/show/321457?kmref=search&from_page=1&no=2
 $gulp.task(
   'upload-dist',
   () => $gulp.src([
@@ -40,6 +37,25 @@ $gulp.task(
     .pipe(
       $gulpConfirm({
         question: $chalk.yellow('Start upload dist ? [y/n]'),
+        input: '_key:y'
+      })
+    )
+    .pipe(
+      $qcloudUpload(getQcloudConf())
+    )
+)
+
+$gulp.task(
+  'upload-images',
+  () => $gulp.src([
+    '**/*.{html,js,css,ttf,woff,svg,eot,png,jpg,jpeg,gif}'
+  ], {
+    cwd: $path.join($config.root, 'images'),
+    base: 'images'
+  })
+    .pipe(
+      $gulpConfirm({
+        question: $chalk.yellow('Start upload images ? [y/n]'),
         input: '_key:y'
       })
     )

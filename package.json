@@ -20,6 +20,7 @@
   "homepage": "https://github.com/TabSpace/cld#readme",
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "chalk": "^4.1.0",
     "eslint": "^7.2.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-html": "^6.0.2",
@@ -27,6 +28,9 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "gulp": "^4.0.2"
+    "fs-extra": "^9.0.1",
+    "gulp": "^4.0.2",
+    "gulp-confirm": "^1.0.8",
+    "gulp-qcloud-cos-upload": "^1.1.3"
   }
 }

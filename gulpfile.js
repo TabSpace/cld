@@ -7,5 +7,5 @@ require('./task/upload')
 // =================
 
 $gulp.task('default', $gulp.series(
-  'upload'
+  'upload-dist'
 ))
