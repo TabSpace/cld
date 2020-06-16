@@ -46,7 +46,9 @@ $gulp.task(
       })
     )
     .pipe(
-      $qcloudUpload(getQcloudConf())
+      $qcloudUpload(getQcloudConf({
+        overwrite: true
+      }))
     )
 )
 
@@ -65,6 +67,8 @@ $gulp.task(
       })
     )
     .pipe(
-      $qcloudUpload(getQcloudConf())
+      $qcloudUpload(getQcloudConf({
+        overwrite: true
+      }))
     )
 )
