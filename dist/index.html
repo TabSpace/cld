@@ -65,7 +65,7 @@ body{
 </div>
 <script src="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v11/js/zepto.min.js"></script>
 <script>
-$(function() {
+$(function () {
   var prizeList = [{
     name: '巧克力',
     image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2894112908,1236594902&fm=26&gp=0.jpg',
@@ -82,102 +82,102 @@ $(function() {
     name: '冰激凌',
     image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591524077383&di=2dd90f1f378db83e4ce92ffa30ee8e84&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F16%2F11%2F14%2F32125752319543128124c603f6f4b129.jpg',
     rate: 0.2
-  }];
+  }]
 
-  var itemList = prizeList.slice(0);
+  var itemList = prizeList.slice(0)
   var emptyItem = {
     name: '很遗憾',
-    image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3563113040,963279351&fm=26&gp=0.jpg',
-  };
-  itemList.push(emptyItem);
+    image: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3563113040,963279351&fm=26&gp=0.jpg'
+  }
+  itemList.push(emptyItem)
 
-  itemList.forEach(function(item) {
-    var url = item.image;
-    var name = item.name;
-    var img = new Image();
-    img.src = url;
-    item.node = $('<div class="img" style="background-image: url(' + url + ');"><div class="title">' + name + '</div></div>');
-    item.node.css('display', 'none');
-    $('#box').append(item.node);
-  });
+  itemList.forEach(function (item) {
+    var url = item.image
+    var name = item.name
+    var img = new Image()
+    img.src = url
+    item.node = $('<div class="img" style="background-image: url(' + url + ');"><div class="title">' + name + '</div></div>')
+    item.node.css('display', 'none')
+    $('#box').append(item.node)
+  })
 
   // 挑选奖品
   // 概率计算在这里
-  var pickPrize = function() {
-    var seed = Math.random();
-    console.log('seed:', seed);
-    var chosenList = prizeList.filter(function(item) {
-      return item.rate > seed;
-    });
+  var pickPrize = function () {
+    var seed = Math.random()
+    console.log('seed:', seed)
+    var chosenList = prizeList.filter(function (item) {
+      return item.rate > seed
+    })
     if (chosenList.length > 0) {
       // 概率在范围内的，随机选择一个
-      var cindex = Math.floor(Math.random() * chosenList.length);
-      var citem = chosenList[cindex];
+      var cindex = Math.floor(Math.random() * chosenList.length)
+      var citem = chosenList[cindex]
       if (citem) {
-        citem.node.show();
+        citem.node.show()
       }
     } else {
       // 未中奖
-      emptyItem.node.show();
+      emptyItem.node.show()
     }
-  };
+  }
 
-  var timer = null;
-  var curIndex = -1;
+  var timer = null
+  var curIndex = -1
 
   // 抽奖动画
-  var doFx = function() {
-    var index;
+  var doFx = function () {
+    var index
     // 要求每次切换帧不能重复
     do {
-      index = Math.floor(itemList.length * Math.random());
-    } while (index === curIndex);
-    var prevItem = itemList[curIndex];
-    var curItem = itemList[index];
-    curIndex = index;
+      index = Math.floor(itemList.length * Math.random())
+    } while (index === curIndex)
+    var prevItem = itemList[curIndex]
+    var curItem = itemList[index]
+    curIndex = index
     if (curItem) {
-      curItem.node.show();
+      curItem.node.show()
     }
     if (prevItem) {
-      prevItem.node.hide();
+      prevItem.node.hide()
     }
-    timer = setTimeout(doFx, 100);
+    timer = setTimeout(doFx, 100)
   }
 
   // 抽奖动作切换
   var cooling = false
-  $('#draw').on('click', function(){
+  $('#draw').on('click', function () {
     // 防止误触发
     if (cooling) {
-      return;
+      return
     }
-    cooling = true;
-    setTimeout(function() {
-      cooling = false;
-    }, 1000);
+    cooling = true
+    setTimeout(function () {
+      cooling = false
+    }, 1000)
 
     if (timer) {
       // 给出结果
-      clearTimeout(timer);
-      timer = null;
+      clearTimeout(timer)
+      timer = null
       // 隐藏动画当前帧
-      var curItem = itemList[curIndex];
+      var curItem = itemList[curIndex]
       if (curItem) {
-        curItem.node.hide();
-        curIndex = -1;
+        curItem.node.hide()
+        curIndex = -1
       }
       // 挑选奖品
-      pickPrize();
+      pickPrize()
     } else {
       // 先全部隐藏
-      itemList.forEach(function(item) {
-        item.node.hide();
-      });
+      itemList.forEach(function (item) {
+        item.node.hide()
+      })
       // 开始动画
-      doFx();
+      doFx()
     }
-  });
-});
+  })
+})
 </script>
 </body>
 </html>

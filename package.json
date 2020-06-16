@@ -1,0 +1,32 @@
+{
+  "name": "cld",
+  "version": "0.0.0-development",
+  "description": "给孩子用的简单抽奖程序",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./",
+    "upload": "gulp upload-dist",
+    "img": "gulp upload-images"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TabSpace/cld.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TabSpace/cld/issues"
+  },
+  "homepage": "https://github.com/TabSpace/cld#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.2.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-html": "^6.0.2",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "gulp": "^4.0.2"
+  }
+}
