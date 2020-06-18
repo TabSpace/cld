@@ -66,30 +66,31 @@ body{
 <script src="//s.yangshipin.cn/CCTVVideo/CCTVVideoAssets/v11/js/zepto.min.js"></script>
 <script>
 $(function () {
+  var starPerDay = 4
   var prizeList = [{
     name: '巧克力',
     image: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2894112908,1236594902&fm=26&gp=0.jpg',
-    rate: 0.4
+    rate: 0.4 / starPerDay
   }, {
     name: '看电视',
     image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591524041615&di=a00a3eb4765a5963a1b5081fe3cc03af&imgtype=0&src=http%3A%2F%2Fku.90sjimg.com%2Felement_origin_min_pic%2F17%2F03%2F17%2F962c8ac2da61395ace6a3f9e085814dd.jpg%2521%2Ffwfh%2F804x1423%2Fquality%2F90%2Funsharp%2Ftrue%2Fcompress%2Ftrue',
-    rate: 0.3
+    rate: 0.3 / starPerDay
   }, {
     name: '棒棒糖',
     image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591523661025&di=ad5bb076d9f8b50b5b6d86b4584a40c1&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fforum%2Fw%3D580%2Fsign%3Dac70ce4b682762d0803ea4b790ed0849%2F6e5949166d224f4a2538027b02f790529922d153.jpg',
-    rate: 0.2
+    rate: 0.2 / starPerDay
   }, {
     name: '冰激凌',
     image: 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591524077383&di=2dd90f1f378db83e4ce92ffa30ee8e84&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_origin_min_pic%2F16%2F11%2F14%2F32125752319543128124c603f6f4b129.jpg',
-    rate: 0.2
+    rate: 0.2 / starPerDay
   }, {
     name: '小马宝莉-梦幻紫悦',
     image: 'https://ria-1256085844.file.myqcloud.com/cld/images/pony1.jpeg',
-    rate: 0.1
+    rate: 0.1 / starPerDay
   }, {
     name: '小马宝莉-闪耀宇宙公主',
     image: 'https://ria-1256085844.file.myqcloud.com/cld/images/pony2.jpeg',
-    rate: 0.125
+    rate: 0.125 / starPerDay
   }]
 
   var itemList = prizeList.slice(0)
