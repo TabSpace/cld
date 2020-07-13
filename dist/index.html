@@ -107,7 +107,18 @@ $(function () {
     name: '紫悦',
     image: 'https://ria-1256085844.file.myqcloud.com/cld/images/pony_ziyue.jpeg',
     rate: 0.1 / starPerDay
+  }, {
+    name: '6元贴纸',
+    image: 'https://ria-1256085844.file.myqcloud.com/cld/images/pony_stickers_4_24.jpg',
+    rate: 0.5 / starPerDay
+  }, {
+    name: '1.5元贴纸',
+    image: 'https://ria-1256085844.file.myqcloud.com/cld/images/pony_stickers_15_10.jpg',
+    rate: 1 / starPerDay
   }]
+
+  // 棒棒糖10元
+  // 以此为基准调节概率
 
   var itemList = prizeList.slice(0)
   var emptyItem = {
